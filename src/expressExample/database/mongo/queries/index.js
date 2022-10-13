@@ -3,5 +3,5 @@ module.exports = {
   user: require('./user'),
   role: require('./role'),
   balance: require('./balance'),
-  article: require('./article'),
+  article: require('./article')
 }

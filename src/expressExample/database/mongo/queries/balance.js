@@ -21,7 +21,6 @@ const saveBalance = async balance => {
  * @returns found balance
  */
 const getOneBalanceByIdUser = async userId => {
-  
   const balances = await BalanceModel.find({ userId })
 
   return balances

@@ -37,7 +37,6 @@ class UserService {
    * @param {String} args.role
    */
   constructor(args = {}) {
-    
     const {
       userId = '',
       name = '',
@@ -46,8 +45,8 @@ class UserService {
       password = '',
       role = '2'
     } = args
-    console.log('los args: ', args);
-    this.#userId = userId    
+    console.log('los args: ', args)
+    this.#userId = userId
     this.#name = name
     this.#lastName = lastName
     this.#email = email
@@ -55,16 +54,16 @@ class UserService {
     this.#role = role
   }
 
-  async verifyUserExists() {    
+  async verifyUserExists() {
     if (!this.#userId)
       throw new httpErrors.BadRequest('Missing required field: userId')
 
     const user = await getUserByID(this.#userId)
-    
+
     if (!user) throw new httpErrors.NotFound('User not found')
 
     return user
-  }  
+  }
 
   async saveUser() {
     if (!this.#name)
@@ -99,7 +98,6 @@ class UserService {
   }
 
   async getUserByID() {
-    
     if (!this.#userId)
       throw new httpErrors.BadRequest('Missing required field: userId')
 

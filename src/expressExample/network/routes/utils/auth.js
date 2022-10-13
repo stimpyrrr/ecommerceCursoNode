@@ -102,7 +102,7 @@ const verifyIsCurrentUser = () => {
       const { email, password } = validateUserPayload(payload)
       const user = await new UserService({ email, password }).login()
       const isLoginCorrect = Boolean(user)
-      console.log(user.id," === ",userId)
+      console.log(user.id, ' === ', userId)
       if (isLoginCorrect && user.id === userId) return next()
 
       return next(new httpErrors.Unauthorized(NOT_ALLOWED_TO_BE_HERE))
@@ -123,13 +123,32 @@ const verifyUserRole = () => {
       /* const token = getToken(authorization)
       const payload = jwt.verify(token, process.env.SECRET)
       const { email, password } = validateUserPayload(payload) */
-      const user = await new UserService({ userId: userId }).getUserByID()
+      const user = await new UserService({ userId }).getUserByID()
       const role = await new RoleService({ id: roleId }).getRoleByID()
       const isLoginCorrect = Boolean(user)
       const isRoleCorrect = Boolean(role)
 
-      console.log('verifyUserRole:', isLoginCorrect,' && ',isRoleCorrect,' && ',user.id,' === ',userId,' && ',String(role._id),' && ',String(user.role));
-      if (isLoginCorrect && isRoleCorrect && user.id === userId && String(role._id) === String(user.role)) return next()
+      console.log(
+        'verifyUserRole:',
+        isLoginCorrect,
+        ' && ',
+        isRoleCorrect,
+        ' && ',
+        user.id,
+        ' === ',
+        userId,
+        ' && ',
+        String(role._id),
+        ' && ',
+        String(user.role)
+      )
+      if (
+        isLoginCorrect &&
+        isRoleCorrect &&
+        user.id === userId &&
+        String(role._id) === String(user.role)
+      )
+        return next()
 
       return next(new httpErrors.Unauthorized('Rol Unauthorized'))
     } catch (error) {

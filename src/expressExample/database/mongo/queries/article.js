@@ -28,7 +28,6 @@ const getOneArticle = async id => {
 }
 
 const updateArticleUser = async article => {
-  
   const { id, userId } = article
   const articleUpdated = await ArticleModel.findOneAndUpdate(
     { id },
