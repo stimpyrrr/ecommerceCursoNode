@@ -27,8 +27,14 @@ class ArticleService {
    * @param {String|undefined} args.userId
    */
   constructor(args) {
-    console.log('args article: ', args);
-    const { id = '', name = '', description = '', price = '', userId = '' } = args
+    console.log('args article: ', args)
+    const {
+      id = '',
+      name = '',
+      description = '',
+      price = '',
+      userId = ''
+    } = args
 
     this.#id = id
     this.#name = name
@@ -41,7 +47,7 @@ class ArticleService {
     if (!this.#userId)
       throw new httpErrors.BadRequest('Missing required field: userId')
 
-    const userService = new UserService({userId: this.#userId})
+    const userService = new UserService({ userId: this.#userId })
     const foundUser = await userService.verifyUserExists()
 
     const newArticle = await saveArticle({
@@ -56,7 +62,7 @@ class ArticleService {
   }
 
   async getArticle() {
-    console.log('en el getarticle: ', this.#id);
+    console.log('en el getarticle: ', this.#id)
     if (!this.#id) throw new httpErrors.BadRequest('Missing required field: id')
 
     const foundArticle = await getOneArticle(this.#id)
@@ -71,25 +77,33 @@ class ArticleService {
     if (!this.#id) throw new httpErrors.BadRequest('Missing required field: id')
 
     const foundArticle = await getOneArticle(this.#id)
-    const userService = new UserService({userId: this.#userId})
+    const userService = new UserService({ userId: this.#userId })
     const foundUser = await userService.verifyUserExists()
-    
-    const roleService = new RoleService({id: 3})//Client
+
+    const roleService = new RoleService({ id: 3 }) // Client
     const roleClientService = await roleService.getRoleByID()
 
-    if(String(roleClientService._id) !== String(foundUser.role)) throw new httpErrors.NotFound('Role is not a Client')
+    if (String(roleClientService._id) !== String(foundUser.role))
+      throw new httpErrors.NotFound('Role is not a Client')
 
     if (!foundArticle) throw new httpErrors.NotFound('Article not found')
 
-    const balanceService = new BalanceService({userId: this.#userId})
+    const balanceService = new BalanceService({ userId: this.#userId })
     const totalBalanceClient = await balanceService.getOneBalanceByIdUser()
 
-    if(foundArticle.price > totalBalanceClient) throw new httpErrors.NotFound('Balance is not unsuficient')
+    if (foundArticle.price > totalBalanceClient)
+      throw new httpErrors.NotFound('Balance is not unsuficient')
 
-    const balanceServiceClient = new BalanceService({balance: foundArticle.price*-1, userId: this.#userId})
+    const balanceServiceClient = new BalanceService({
+      balance: foundArticle.price * -1,
+      userId: this.#userId
+    })
     const updateBalanceClient = await balanceServiceClient.saveBalance()
 
-    const balanceServiceSeller = new BalanceService({balance: foundArticle.price, userId: foundArticle.userId.id})
+    const balanceServiceSeller = new BalanceService({
+      balance: foundArticle.price,
+      userId: foundArticle.userId.id
+    })
     const updateBalanceSeller = await balanceServiceSeller.saveBalance()
 
     const updateUser = await this.updateArticleUser()
@@ -99,14 +113,16 @@ class ArticleService {
     return updateUser
   }
 
-  async updateArticleUser(){
-    const buyerUser = await new UserService({userId:this.#userId}).getUserByID()
+  async updateArticleUser() {
+    const buyerUser = await new UserService({
+      userId: this.#userId
+    }).getUserByID()
+
     return await updateArticleUser({
       id: this.#id,
       userId: buyerUser._id
     })
   }
-  
 }
 
 module.exports = ArticleService

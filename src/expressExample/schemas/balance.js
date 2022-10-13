@@ -1,6 +1,6 @@
 const { Type } = require('@sinclair/typebox')
 
-const storeBalanceSchema = Type.Object({ 
+const storeBalanceSchema = Type.Object({
   balance: Type.Number({ minLength: 1 })
 })
 
