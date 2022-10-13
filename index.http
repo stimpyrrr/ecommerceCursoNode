@@ -1,0 +1,120 @@
+### Get all user
+GET http://localhost:2000/api/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imx1aXMuYXJkaWxhQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoic2Fsa2Zqc2RsYWtqZmxkYXM7amZkbHNhZml1aGV3aXJmaCIsImlhdCI6MTY2MjUwOTc2OCwiZXhwIjoxNjYyNTEwMzY4fQ._frbtMMA6hHmHfaxq6boAZNCgw8wEPKSxzZ-E2cgzfY
+
+### Get one user
+GET http://localhost:2000/api/user/x5kUjzl8T4TtQ1oE84vOB
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhbGViLnBhcnJhQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiMTIzNDU2O2FiYzsiLCJpYXQiOjE2NjI1MTM2ODYsImV4cCI6MTY2MjUxNDI4Nn0.EKCJVqBqniIR5XPX11lFJdDV5S2G1_yco4PHDcaK0tM
+
+### Save a new user
+POST http://localhost:2000/api/user/signup
+Content-Type: application/json
+
+{
+  "name": "Oscar",
+  "lastName": "Guajardo",
+  "email": "oscar.g@gmail.com",
+  "password": "salkfjsdlakjfldas;jfdlsafiuhewirfh",
+  "role": 4
+}
+
+### Delete a user by id
+DELETE http://localhost:2000/api/user/2XYz-GSfWSzER25w4Fr8l
+
+### Update a user by id
+PATCH http://localhost:2000/api/user/y_omIXwPabKD8nwrmD0X_
+Content-Type: application/json
+
+{
+  "email": "caleb.parra@gmail.com"
+}
+
+### Save a url
+POST http://localhost:2000/api/url/
+Content-Type: application/json
+
+{
+  "link": "https://www.linkedin.com/feed/update/urn:li:share:6965311557555646464?utm_source=linkedin_share&utm_medium=member_desktop_share&utm_content=post"
+}
+
+### Get url
+GET http://localhost:2000/api/url/ns1gn_
+
+### 404 error
+GET http://localhost:2000/route/that/does/not/exists
+
+### Login
+POST http://localhost:2000/api/user/login
+Content-Type: application/json
+
+{
+  "email": "arnold.j@gmail.com",
+  "password": "salkfjsdlakjfldas;jfdlsafiuhewirfh"
+}
+
+### Login Client
+POST http://localhost:2000/api/user/login
+Content-Type: application/json
+
+{
+  "email": "arnold.j@gmail.com",
+  "password": "salkfjsdlakjfldas;jfdlsafiuhewirfh"
+}
+
+### Login Seller
+POST http://localhost:2000/api/user/login
+Content-Type: application/json
+
+{
+  "email": "oscar.g@gmail.com",
+  "password": "salkfjsdlakjfldas;jfdlsafiuhewirfh"
+}
+
+### Create role
+POST http://localhost:2000/api/role
+Content-Type: application/json
+
+{
+  "id": "4",
+  "name": "seller"
+}
+
+### Get a role
+GET http://localhost:2000/api/role/2
+Content-Type: application/json
+
+### Refresh user token
+GET http://localhost:2000/api/user/refreshAccessToken/x5kUjzl8T4TtQ1oE84vOB
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFybm9sZC5qQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoic2Fsa2Zqc2RsYWtqZmxkYXM7amZkbHNhZml1aGV3aXJmaCIsImlhdCI6MTY2NTU1MTMyOSwiZXhwIjoxNjY1NTUxOTI5fQ.Vkau0hT-H7i_cpmVh9zMbBUV32R2STPDWuHC-UYh6yQ
+
+### Save a new balance
+POST http://localhost:2000/api/balance/1iVNAtTbDqt7bCmaIdGPx
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFybm9sZC5qQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoic2Fsa2Zqc2RsYWtqZmxkYXM7amZkbHNhZml1aGV3aXJmaCIsImlhdCI6MTY2NTYzMDk5OCwiZXhwIjoxNjY1NjMxNTk4fQ.R44TIlzVJ-EAAmcuBMdgsw5761r6GuKBKAnIFaIM_88
+Content-Type: application/json
+
+{  
+  "balance": 1000 
+}
+
+### get a balance by user
+GET http://localhost:2000/api/balance/PU-G9OJnrtS9dLqFTb8yi
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFybm9sZC5qQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoic2Fsa2Zqc2RsYWtqZmxkYXM7amZkbHNhZml1aGV3aXJmaCIsImlhdCI6MTY2NTYxNzcyMCwiZXhwIjoxNjY1NjE4MzIwfQ.0sJ6ZgB5hP1U6yHcfbmhRybRXza8nkeA9nfjvXm1uYg
+
+
+### Save a new article
+POST http://localhost:2000/api/article/a32xPbKK-eeJqFdoOZc5b
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im9zY2FyLmdAZ21haWwuY29tIiwicGFzc3dvcmQiOiJzYWxrZmpzZGxha2pmbGRhcztqZmRsc2FmaXVoZXdpcmZoIiwiaWF0IjoxNjY1NjMyNTk4LCJleHAiOjE2NjU2MzMxOTh9.N9O0RW_BU6jLEmou7NoSYl7ZsSTbRMAmGJu16cZFrKI
+Content-Type: application/json
+
+{
+  "name": "tetera",
+  "description": "sirve para te",
+  "price": 100,
+  "role": 4
+}
+
+### Get a article
+GET http://localhost:2000/api/article/Ta2J3Z
+
+### BUY a article
+POST http://localhost:2000/api/buy/article/JgvcTx/1iVNAtTbDqt7bCmaIdGPx
